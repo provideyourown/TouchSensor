@@ -1,0 +1,39 @@
+Touch Sensor library for Arduino
+
+Version 1.0
+
+by Scott Daniels
+
+//See the online documentation here: http://provideyourown.com/2011/cheap-alternative-for-hard-to-find-cds-light-sensor/
+
+This library uses two almost identical methods for detecting touch. Both methods measure an RC constant and use only one digital pin.
+
+Method 1 - Pin charge
+
+This method discharges tho self-capacitance of the sensor by setting the digital pin to output and low. It then sets the pin to input. Either an external resistor to Vcc
+can be used or the internal pull-up resistor can be set when going to input. In either case, the charge time is measured. The charge time is more
+reliably longer with a 1 MegOhm pullup resistor than the smaller internal one. In either case, the charge time baseline seems to be the same whether earth grounded or not.
+
+Method 2 - Pin Discharge
+
+This method charges the self-capacitance of the sensor by setting the digital pin high. It then sets the pin to input and turns off the pullup resistor.
+When the pin reads low due to the cap discharge, the time taken is measured. A touch will take less time to discharge. The time varies whether the uC
+is earth grounded, but a substantial percentage change occurs in both cases - just the baseline reading varies. Subsequent testing has revealed that this method is dependent
+on taking repeated samples close together. When they are spread out over time (say a delay of 5 ms between samples) changes become undetectable. Therefore, the real
+mechanism of this method is unknown, and therefore not reliable.
+
+
+Other Documentation
+* Excellent article providing overview on how pin charge touch detection works with and without earth ground - http://elm-chan.org/works/capsens/report_e.html
+
+
+
+
+Reccomendation
+Here is the latest recommendation for touch sensing:
+Use charge method with external resistor of 1 meg-ohm.
+For sensor, the larger the better or else bare contact. No ground plane needed. Without earth ground, readings are highly variable. In this application,
+either take a large sample (200) and trigger on ave change > 30%, or take 10 samples and trigger if any go over 50%. Non-touched readings stay pretty stable around baseline.
+
+To add tact switch in parallel with charge method, the switch should contact to Vcc, and the timing value goes to zero (the opposite of a touch).
+Since the magnitude of change is similar to a touch, but different in direction, a distinction between the two types can be detected if desired.
