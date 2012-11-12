@@ -4,7 +4,7 @@ Version 1.0
 
 by Scott Daniels
 
-//See the online documentation here: http://provideyourown.com/2011/cheap-alternative-for-hard-to-find-cds-light-sensor/
+//TBD - See the online documentation here: http://provideyourown.com/
 
 This library uses two almost identical methods for detecting touch. Both methods measure an RC constant and use only one digital pin.
 
