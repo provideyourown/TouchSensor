@@ -6,13 +6,13 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-TouchSensor	 KEYWORD1
+TouchSensor	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-measure	 KEYWORD2
+measure	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
